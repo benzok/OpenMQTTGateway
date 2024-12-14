@@ -388,8 +388,9 @@ void createOrUpdateDevice(const char* mac, uint8_t flags, int model, int mac_typ
       device->connect = true;
     }
 
-    if (model != UNKWNON_MODEL) {
-      device->sensorModel_id = model;
+    if (model != UNKWNON_MODEL && device->sensorModel_id == UNKWNON_MODEL) {
+      newDevices++;
+      device->isDisc = false;
     }
 
     if (flags & device_flags_isWhiteL || flags & device_flags_isBlackL) {
